@@ -29,8 +29,8 @@ maxValue = pairs.reduceByKey(max)
 # Print each batch
 maxValue.pprint()
 
-sumValue = pairs.reduceByKey(sumFunc)
-sumValue.pprint()
+sumResults = pairs.reduceByKey(sumFunc)
+sumResults.pprint()
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
