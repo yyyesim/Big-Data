@@ -15,12 +15,17 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
+my_list = [1,2,3,4,5,6,7,8,9,10]
+# Lets say I want to square each term in my_list.
+squared_list = map(lambda x:x**2,my_list)
+print squared_list
+
 #cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
 #cntValue.pprint()
 
 #avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
-avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (y[0] + y[1], x[1] + y[1]))
-avgValue.pprint()
+#avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (y[0] + y[1], x[1] + y[1]))
+#avgValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
