@@ -15,15 +15,8 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
-#min = "For (sensor,min)"
-#minString = sc.parallelize(List(min)).collect()
-#minString.pprint()
-
 def sumFunc(accum, n):
     return accum + n
-
-sumValue = pairs.reduceByKey(sumFunc)
-sumValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
@@ -35,6 +28,9 @@ minValue.pprint()
 maxValue = pairs.reduceByKey(max)
 # Print each batch
 maxValue.pprint()
+
+sumValue = pairs.reduceByKey(sumFunc)
+sumValue.pprint()
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
