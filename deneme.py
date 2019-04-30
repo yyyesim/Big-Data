@@ -18,9 +18,14 @@ pairs = words.map(lambda word: (word.split(",")[0], word))
 #cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
 #cntValue.pprint()
 
-#avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
-avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0]))
+sumCount = pairs.combineByKey((lambda x: (x,1)),
+                             (lambda x, y: (x[0] + y, x[1] + 1)),
+                             (lambda x, y: (x[0] + y[0], x[1] + y[1])))
+avgValue = sumCount.map(lambda key, xy: (key, xy[0]/xy[1])).collectAsMap()
 avgValue.pprint()
+
+#avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
+#avgValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
