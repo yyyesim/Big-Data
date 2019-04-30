@@ -16,13 +16,16 @@ words = lines.flatMap(lambda line: line.split(" "))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
 #aTuple = (0,0) # As of Python3, you can't pass a literal sequence to a function.
-avg = pairs.aggregateByKey((0,0), lambda a,b: (a[0] + b[1], a[1] + 1), lambda a,b: (a[0] + b[0], a[1] + b[1]))
-avgValue = avg.mapValues(lambda v: v[0]/v[1]).collect()
-avgValue.pprint()
+#avg = pairs.aggregateByKey((0,0), lambda a,b: (a[0] + b[1], a[1] + 1), lambda a,b: (a[0] + b[0], a[1] + b[1]))
+#avgValue = avg.mapValues(lambda v: v[0]/v[1]).collect()
+#avgValue.pprint()
 
 #min = "For (sensor,min)"
 #minString = sc.parallelize(List(min)).collect()
 #minString.pprint()
+
+sumValue = pairs.reduceByKey(lambda x, y: x + y)
+sumValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
