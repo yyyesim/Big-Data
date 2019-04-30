@@ -15,7 +15,7 @@ words.pprint()
 # Count each word in each batch
 #pairs = words.map(lambda word: (word, 1))
 #pairs = words.flatMap(lambda word: (word.split(",")[0], word))
-pairs = words.flatMap(lambda word: word.split(","))
+pairs = words.map(lambda word: word.split(","))
 pairs.pprint()
 
 
