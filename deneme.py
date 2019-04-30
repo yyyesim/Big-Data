@@ -15,7 +15,10 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
-print("For (sensor,min)")
+min = "For (sensor,min)"
+minString = sc.parallelize(List(min)).collect()
+minString.pprint()
+
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
 # Print each batch
