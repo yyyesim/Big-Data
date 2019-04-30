@@ -19,7 +19,7 @@ pairs = words.map(lambda word: (word.split(",")[0], word))
 #minString = sc.parallelize(List(min)).collect()
 #minString.pprint()
 
-sumValue = pairs.reduceByKey(lambda x, y: x + y)
+sumValue = pairs.reduceByKey(add)
 sumValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
