@@ -27,7 +27,7 @@ print squared_list
 #cntValue = pairs.reduceByKey(lambda accum, n: accum.cast('float') + n.cast('float'))
 #cntValue.pprint()
 
-avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (long(x[0]) + long(y[0]), long(x[1]) + long(y[1])))
+avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (int(x[0]) + int(y[0]), int(x[1]) + int(y[1])))
 #avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (y[0] + y[1], x[1] + y[1]))
 avgValue.pprint()
 
