@@ -15,17 +15,12 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
-cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
-cntValue.pprint()
-
-sumCount = pairs.combineByKey((lambda x: (x,1)),
-                             (lambda x, y: (x[0] + y, x[1] + 1)),
-                             (lambda x, y: (x[0] + y[0], x[1] + y[1])))
-avgValue2 = sumCount.map(lambda key, xy: (key, xy[0]/xy[1]))
-avgValue2.pprint()
+#cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
+#cntValue.pprint()
 
 #avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
-#avgValue.pprint()
+avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (y[0] + y[1], x[1] + y[1]))
+avgValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
