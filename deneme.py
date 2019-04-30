@@ -21,8 +21,8 @@ pairs = words.map(lambda word: (word.split(",")[0], word))
 sumCount = pairs.combineByKey((lambda x: (x,1)),
                              (lambda x, y: (x[0] + y, x[1] + 1)),
                              (lambda x, y: (x[0] + y[0], x[1] + y[1])))
-avgValue = sumCount.map(lambda key, xy: (key, xy[0]/xy[1]))
-avgValue.pprint()
+avgValue2 = sumCount.map(lambda key, xy: (key, xy[0]/xy[1]))
+avgValue2.pprint()
 
 #avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
 #avgValue.pprint()
