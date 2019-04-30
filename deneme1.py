@@ -15,10 +15,6 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 student_rdd = words.map(lambda word: (word.split(",")[0], word))
 
-
-
-
-
 # Defining Seqencial Operation and Combiner Operations
 # Sequence operation : Finding Maximum Marks from a single partition
 def seq_op(accumulator, element):
@@ -105,10 +101,7 @@ def comb_op(accumulator1, accumulator2):
  
 # Zero Value: Zero value in our case will be 0 as we are finding Maximum Marks
 zero_val = (0, 0)
-aggr_rdd = student_rdd.map(lambda t: (t[0], t[1]))
-                      .aggregateByKey(zero_val, seq_op, comb_op)
-                      .map(lambda t: (t[0], t[1][0]/t[1][1]*1.0))
-  
+aggr_rdd = student_rdd.map(lambda t: (t[0], t[1])).aggregateByKey(zero_val, seq_op, comb_op).map(lambda t: (t[0], t[1][0]/t[1][1]*1.0)) 
  
 # Check the Outout
 for tpl in aggr_rdd.collect():
