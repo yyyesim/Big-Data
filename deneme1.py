@@ -1,4 +1,19 @@
+from pyspark import SparkContext
+from pyspark.streaming import StreamingContext
 
+# Create a local StreamingContext with two working threads and a batch interval of 2 seconds
+sc = SparkContext("local[2]", "Sensor")
+ssc = StreamingContext(sc, 20)
+
+# Create a DStream
+lines = ssc.socketTextStream("sandbox-hdp.hortonworks.com", 3333)
+
+# Split each line into words
+words = lines.flatMap(lambda line: line.split(" "))
+
+# Count each word in each batch
+#pairs = words.map(lambda word: (word, 1))
+student_rdd = words.map(lambda word: (word.split(",")[0], word))
 
 
 
@@ -22,7 +37,7 @@ def comb_op(accumulator1, accumulator2):
  
 # Zero Value: Zero value in our case will be 0 as we are finding Maximum Marks
 zero_val = 0
-aggr_rdd = student_rdd.map(lambda t: (t[0], (t[1], t[2]))).aggregateByKey(zero_val, seq_op, comb_op) 
+aggr_rdd = student_rdd.map(lambda t: (t[0], t[1])).aggregateByKey(zero_val, seq_op, comb_op) 
  
 # Check the Outout
 for tpl in aggr_rdd.collect():
@@ -59,7 +74,7 @@ def comb_op(accumulator1, accumulator2):
  
 # Zero Value: Zero value in our case will be 0 as we are finding Maximum Marks
 zero_val = ('', 0)
-aggr_rdd = student_rdd.map(lambda t: (t[0], (t[1], t[2]))).aggregateByKey(zero_val, seq_op, comb_op) 
+aggr_rdd = student_rdd.map(lambda t: (t[0], t[1])).aggregateByKey(zero_val, seq_op, comb_op) 
  
 # Check the Outout
 for tpl in aggr_rdd.collect():
@@ -90,7 +105,7 @@ def comb_op(accumulator1, accumulator2):
  
 # Zero Value: Zero value in our case will be 0 as we are finding Maximum Marks
 zero_val = (0, 0)
-aggr_rdd = student_rdd.map(lambda t: (t[0], (t[1], t[2])))
+aggr_rdd = student_rdd.map(lambda t: (t[0], t[1]))
                       .aggregateByKey(zero_val, seq_op, comb_op)
                       .map(lambda t: (t[0], t[1][0]/t[1][1]*1.0))
   
