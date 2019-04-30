@@ -15,9 +15,6 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
-def sumFunc(accum, n):
-    return accum + n
-
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
 # Print each batch
@@ -29,7 +26,8 @@ maxValue = pairs.reduceByKey(max)
 # Print each batch
 maxValue.pprint()
 
-sumResults = pairs.reduceByKey(sumFunc)
+sumResults = pairs.flatMap(lambda x: x).reduceByKey(lambda x, y: x + y)
+#sumResults = pairs.reduceByKey(sumFunc)
 sumResults.pprint()
 
 ssc.start()             # Start the computation
