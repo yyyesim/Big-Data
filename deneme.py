@@ -9,13 +9,14 @@ ssc = StreamingContext(sc, 20)
 lines = ssc.socketTextStream("sandbox-hdp.hortonworks.com", 3333)
 
 # Split each line into words
-words2 = lines.flatMap(lambda line: line.split(" "))
-words2.pprint()
+words = lines.flatMap(lambda line: line.split(" "))
+words.pprint()
 
 # Count each word in each batch
 #pairs = words.map(lambda word: (word, 1))
-pairs = words2.map(lambda word: (word.split(",")[0], word))
-
+#pairs = words.flatMap(lambda word: (word.split(",")[0], word))
+pairs = words.flatMap(lambda word: (word.split(",")[0], word.split(",")[1]))
+pairs.pprint()
 
 
 my_list = [1,2,3,4,5,6,7,8,9,10]
