@@ -38,3 +38,4 @@ maxValue.pprint()
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
+# Wait for the computation to terminate
