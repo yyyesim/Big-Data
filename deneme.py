@@ -9,11 +9,11 @@ ssc = StreamingContext(sc, 20)
 lines = ssc.socketTextStream("sandbox-hdp.hortonworks.com", 3333)
 
 # Split each line into words
-words = lines.flatMap(lambda line: line.split(" "))
+words = lines.flatMap(lambda line: line.split(","))
 
 # Count each word in each batch
 #pairs = words.map(lambda word: (word, 1))
-pairs = words.map(lambda word: (word.split(",")[0], word))
+pairs = words.map(lambda word: (word.split(" ")[0], word))
 
 cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
 cntValue.pprint()
