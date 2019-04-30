@@ -19,8 +19,11 @@ pairs = words.map(lambda word: (word.split(",")[0], word))
 #minString = sc.parallelize(List(min)).collect()
 #minString.pprint()
 
-sumValue = pairs.reduceByKey(add)
-sumValue.pprint()
+def sumFunc(accum, n):
+    return accum + n
+
+sumValue = pairs.reduceByKey(sumFunc)
+print(sumValue.collect())
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
