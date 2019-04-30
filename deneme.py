@@ -23,7 +23,7 @@ def sumFunc(accum, n):
     return accum + n
 
 sumValue = pairs.reduceByKey(sumFunc)
-print(sumValue.collect())
+sumValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
