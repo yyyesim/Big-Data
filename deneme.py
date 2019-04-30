@@ -18,7 +18,8 @@ pairs = words.map(lambda word: (word.split(",")[0], word))
 #cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
 #cntValue.pprint()
 
-avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
+#avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
+avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[1] + y[1]))
 avgValue.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
