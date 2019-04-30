@@ -15,8 +15,8 @@ words = lines.flatMap(lambda line: line.split(" "))
 #pairs = words.map(lambda word: (word, 1))
 pairs = words.map(lambda word: (word.split(",")[0], word))
 
-#cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
-#cntValue.pprint()
+cntValue = pairs.reduceByKey(lambda accum, n: accum + n)
+cntValue.pprint()
 
 sumCount = pairs.combineByKey((lambda x: (x,1)),
                              (lambda x, y: (x[0] + y, x[1] + 1)),
