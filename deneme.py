@@ -30,8 +30,8 @@ maxValue = pairs.reduceByKey(max)
 # Print each batch
 maxValue.pprint()
 
-aTuple = (0,0) # As of Python3, you can't pass a literal sequence to a function.
-avg = pairs.aggregateByKey(aTuple, lambda a,b: (a[0] + b,    a[1] + 1), lambda a,b: (a[0] + b[0], a[1] + b[1]))
+#aTuple = (0,0) # As of Python3, you can't pass a literal sequence to a function.
+avg = pairs.aggregateByKey((0,0), lambda a,b: (a[0] + b[1], a[1] + 1), lambda a,b: (a[0] + b[0], a[1] + b[1]))
 avgValue = avg.mapValues(lambda v: v[0]/v[1]).collect()
 avgValue.pprint()
 
