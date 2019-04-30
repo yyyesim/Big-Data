@@ -2,7 +2,7 @@ from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 
 # Create a local StreamingContext with two working threads and a batch interval of 2 seconds
-sc = SparkContext("local[2]", "NetworkWordCount")
+sc = SparkContext("local[2]", "Sensor")
 ssc = StreamingContext(sc, 20)
 
 # Create a DStream
@@ -12,9 +12,11 @@ lines = ssc.socketTextStream("sandbox-hdp.hortonworks.com", 3333)
 words = lines.flatMap(lambda line: line.split(" "))
 
 # Count each word in each batch
-pairs = words.map(lambda word: (word, 1))
-wordCounts = pairs.reduceByKey(lambda x, y: x + y)
+#pairs = words.map(lambda word: (word, 1))
+pairs = words.map(lambda word: (word.split(",")[0], word))
 
+#wordCounts = pairs.reduceByKey(lambda x, y: x + y)
+wordCounts = pairs.reduceByKey(max)
 # Print each batch
 wordCounts.pprint()
 
