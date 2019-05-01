@@ -34,16 +34,16 @@ avgValue2 = pairs.reduceByKey(lambda x, y: int(x[0]) + int(y[0]) , int(x[1]) + i
 avgValue2.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
-  #minValue = pairs.reduceByKey(min)
+minValue = pairs.reduceByKey(min)
 # Print each batch
-  #minValue.pprint()
+minValue.pprint()
 
 
 #print("For (sensor,max)")
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
-  #maxValue = pairs.reduceByKey(max)
+maxValue = pairs.reduceByKey(max)
 # Print each batch
-  #maxValue.pprint()
+maxValue.pprint()
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
