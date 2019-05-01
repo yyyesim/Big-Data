@@ -37,6 +37,7 @@ avgValue.pprint()
 # Print each batch
   #minValue.pprint()
 
+
 #print("For (sensor,max)")
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
   #maxValue = pairs.reduceByKey(max)
