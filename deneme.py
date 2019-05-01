@@ -27,10 +27,10 @@ print squared_list
 #cntValue = pairs.reduceByKey(lambda accum, n: accum.cast('float') + n.cast('float'))
 #cntValue.pprint()
 
-avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: int(x[0]) + int(y[0]) , int(x[1]) + int(y[1]))
+#avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: int(x[0]) + int(y[0]) , int(x[1]) + int(y[1]))
 #avgValue = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (y[0] + y[1], x[1] + y[1]))
-#avgValue2 = pairs.reduceByKey(lambda x, y: int(x[0]) + int(y[0]) , int(x[1]) + int(y[1]))
-avgValue.pprint()
+avgValue2 = pairs.reduceByKey(lambda x, y: int(x[0]) + int(y[0]) , int(x[1]) + int(y[1]))
+avgValue2.pprint()
 
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
   #minValue = pairs.reduceByKey(min)
