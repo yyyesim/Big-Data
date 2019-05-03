@@ -24,7 +24,7 @@ total.pprint()
 sensors = words.map(lambda word: (word.split(",")[0]))
 #sensors.pprint()
 
-sensorcnt = sensors.reduceByKey(lambda x, y: x+y)
+sensorcnt = pairs[0].reduceByKey(lambda x, y: x+y)
 sensorcnt.pprint()
 
 #grp = pairs.map(lambda x: (x, 1)).reduceByKey(_+_)
