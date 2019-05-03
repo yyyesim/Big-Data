@@ -21,9 +21,12 @@ pairs = words.map(lambda word: word.split(","))
 total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
+grp = pairs.groupBy("Value").count()
+grp.pprint()
+
 #cnt = pairs.mapValues(lambda x: (x, 1))
-counter = pairs.reduceByKey(lambda x, y: float(x[0])+float(y[0]))
-counter.pprint()
+#counter = pairs.reduceByKey(lambda x, y: float(x[0])+float(y[0]))
+#counter.pprint()
 
 
 #my_list = [1,2,3,4,5,6,7,8,9,10]
