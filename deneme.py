@@ -18,7 +18,7 @@ words = lines.flatMap(lambda line: line.split(" "))
 pairs = words.map(lambda word: word.split(","))
 #pairs.pprint()
 
-total = pairs.reduceByKey(lambda x, y: x+y)
+total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
 
