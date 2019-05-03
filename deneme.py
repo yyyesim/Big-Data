@@ -21,7 +21,7 @@ pairs = words.map(lambda word: word.split(","))
 total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
-sensors = pairs.words.flatMap(lambda word: (word.split(",")[0], word))
+sensors = words.flatMap(lambda word: (word.split(",")[0], word))
 sensors.pprint()
 
 #grp = pairs.map(lambda x: (x, 1)).reduceByKey(_+_)
