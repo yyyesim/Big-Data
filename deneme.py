@@ -21,7 +21,7 @@ pairs = words.map(lambda word: word.split(","))
 total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
-grp = pairs.groupBy("Value").count()
+grp = pairs.reduceByKey(+)
 grp.pprint()
 
 #cnt = pairs.mapValues(lambda x: (x, 1))
