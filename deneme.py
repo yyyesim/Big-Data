@@ -26,8 +26,6 @@ counter = cnt.reduceByKey(lambda x, y: x+y)
 counter.pprint()
 
 
-
-
 #my_list = [1,2,3,4,5,6,7,8,9,10]
 # Lets say I want to square each term in my_list.
 #squared_list = map(lambda x:x**2,my_list)
