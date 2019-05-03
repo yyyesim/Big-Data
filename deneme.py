@@ -22,7 +22,7 @@ total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
 #cnt = pairs.mapValues(lambda x: (x, 1))
-counter = pairs.reduceByKey(lambda x, y: x[1]+y[1])
+counter = pairs.reduceByKey(lambda x, y: float(x[0])+float(y[0]))
 counter.pprint()
 
 
