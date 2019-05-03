@@ -30,7 +30,7 @@ print squared_list
 avgValue3 = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (float(x[0]) + float(y[0]) , float(x[1]) + float(y[1])))
 #avgValue3.pprint()
 
-avgValue4 = avgValue3.map(lambda k, (v, m): (k, v/m))
+avgValue4 = avgValue3.map(lambda (k, (v, m)): (k, v/m))
 avgValue4.pprint()
 
 #rdd.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
