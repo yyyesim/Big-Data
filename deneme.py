@@ -21,6 +21,9 @@ pairs = words.map(lambda word: word.split(","))
 total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
+cnt = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: x+y)
+cnt.pprint()
+
 
 #my_list = [1,2,3,4,5,6,7,8,9,10]
 # Lets say I want to square each term in my_list.
