@@ -28,7 +28,7 @@ print squared_list
 #cntValue.pprint()
 
 avgValue3 = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (float(x[0]) + float(y[0]) , float(x[1]) + float(y[1])))
-avgValue3.pprint()
+#avgValue3.pprint()
 
 avgValue4 = avgValue3.map(lambda k, (v, m): (k, v/m))
 avgValue4.pprint()
@@ -43,14 +43,14 @@ avgValue4.pprint()
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 minValue = pairs.reduceByKey(min)
 # Print each batch
-minValue.pprint()
+#minValue.pprint()
 
 
 #print("For (sensor,max)")
 #wordCounts = pairs.reduceByKey(lambda x, y: x + y)
 maxValue = pairs.reduceByKey(max)
 # Print each batch
-maxValue.pprint()
+#maxValue.pprint()
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
