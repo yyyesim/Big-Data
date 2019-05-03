@@ -18,20 +18,23 @@ words = lines.flatMap(lambda line: line.split(" "))
 pairs = words.map(lambda word: word.split(","))
 #pairs.pprint()
 
+total = pairs.reduceByKey(lambda x, y: x+y)
+total.pprint()
 
-my_list = [1,2,3,4,5,6,7,8,9,10]
+
+#my_list = [1,2,3,4,5,6,7,8,9,10]
 # Lets say I want to square each term in my_list.
-squared_list = map(lambda x:x**2,my_list)
-print squared_list
+#squared_list = map(lambda x:x**2,my_list)
+#print squared_list
 
 #cntValue = pairs.reduceByKey(lambda accum, n: accum.cast('float') + n.cast('float'))
 #cntValue.pprint()
 
-avgValue3 = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (float(x[0]) + float(y[0]) , float(x[1]) + float(y[1])))
+#avgValue3 = pairs.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (float(x[0]) + float(y[0]) , float(x[1]) + float(y[1])))
 #avgValue3.pprint()
 
-avgValue4 = avgValue3.map(lambda k, (x, y): k, x/y)
-avgValue4.pprint()
+#avgValue4 = avgValue3.map(lambda k, (x, y): k, x/y)
+#avgValue4.pprint()
 
 #rdd.mapValues(lambda x: (x, 1)).reduceByKey(lambda x, y: (x[0] + y[0], x[1] + y[1]))
 
