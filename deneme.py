@@ -21,10 +21,10 @@ pairs = words.map(lambda word: word.split(","))
 total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 total.pprint()
 
-sensors = words.map(lambda word: (word.split(",")[0]))
+sensors = pairs.map(lambda word: (word[0]))
 #sensors.pprint()
 
-sensorcnt = pairs[0].reduceByKey(lambda x, y: x+y)
+sensorcnt = sensors.reduceByKey(lambda x, y: x+y)
 sensorcnt.pprint()
 
 #grp = pairs.map(lambda x: (x, 1)).reduceByKey(_+_)
