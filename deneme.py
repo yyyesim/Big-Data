@@ -26,7 +26,8 @@ sensors = pairs.map(lambda x: (x[0], 1)).reduceByKey(lambda x, y: x + y)
 sensors.pprint()
 
 
-ort = total.join(sensors)
+joined = total.join(sensors)
+ort = joined.map(lambda (k,(v,w)): (k,v/w))
 ort.pprint()
 
 #sensorcnt = sensors.reduceByKey(lambda x, y: x+y)
