@@ -12,7 +12,7 @@ lines = ssc.socketTextStream("sandbox-hdp.hortonworks.com", 3333)
 data = lines.flatMap(lambda line: line.split(" "))
 
 # Map each data key value pair by splitting 
-pairs = words.map(lambda word: data.split(","))
+pairs = data.map(lambda word: data.split(","))
 
 #Calculating minimum values for each sensor
 minValue = pairs.reduceByKey(min)
