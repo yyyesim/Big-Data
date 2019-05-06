@@ -15,17 +15,14 @@ data = lines.flatMap(lambda line: line.split(" "))
 pairs = data.map(lambda sensor: sensor.split(","))
 
 #Calculating minimum values for each sensor
-print("For (sensor,min)")
 minValue = pairs.reduceByKey(min)
 minValue.pprint()
 
 #Calculating minimum values for each sensor
-print("For (sensor,max)")
 maxValue = pairs.reduceByKey(max)
 maxValue.pprint()
 
 #Calculating sum of measurements for each sensor
-print("For (sensor,avg)")
 total = pairs.reduceByKey(lambda x, y: float(x)+ float(y))
 
 #Calculating occcurance values for each sensor
